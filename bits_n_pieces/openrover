@@ -1,0 +1,32 @@
+#! /bin/sh
+# /etc/init.d/openrover
+
+# The following part always gets executed.
+
+# The following part carries out specific functions depending on arguments.
+case "$1" in
+  start)
+    echo "Starting openrover"
+    start-stop-daemon --start --quiet --oknodo --pidfile /var/run/openrover.pid --chdir /home/pi/openrover --background --exec /usr/bin/python /home/pi/openrover/main.py
+    echo "openrover is started"
+    ;;
+  stop)
+    echo "Stopping openrover"
+    start-stop-daemon --stop --quiet --oknodo --pidfile /var/run/openrover.pid --name openrover
+    echo "openrover is dead"
+    ;;
+  restart)
+    echo "Stopping openrover"
+    start-stop-daemon --stop --quiet --oknodo --pidfile /var/run/openrover.pid --name openrover
+    echo "openrover is dead"
+    echo "Starting openrover"
+    start-stop-daemon --start --quiet --oknodo --pidfile /var/run/openrover.pid --chdir /home/pi/openrover --background --exec /usr/bin/python /home/pi/openrover/main.py
+    echo "openrover is started"
+    ;;
+  *)
+    echo "Usage: /etc/init.d/openrover {start|stop|restart}"
+    exit 1
+    ;;
+esac
+
+exit 0

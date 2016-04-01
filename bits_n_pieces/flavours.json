@@ -1,0 +1,9 @@
+{
+  "flavours": [
+    {
+      "name": "OpenPi",
+      "description": "OpenWSN-ready Raspberry Pi distribution",
+      "feature_level": 123900
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "OpenPi",
+  "version": "1.0.0",
+  "release_date": "2014-10-12",
+  "kernel": "3.12",
+  "description": "OpenWSN-ready Raspberry Pi distribution",
+  "url": "http://www.openwsn.org/",
+  "username": "pi",
+  "password": "raspberry",
+  "feature_level": 123900
+}
