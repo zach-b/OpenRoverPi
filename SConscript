@@ -38,46 +38,46 @@ def ActionBuild(env,target,source):
     syscall("cp bits_n_pieces/openwsn_logo.png build/defaults/slides/A.png")
     
     # rename distribution
-    syscall("mv build/os/Raspbian build/os/OpenPi")
+    syscall("mv build/os/Raspbian build/os/OpenRoverPi")
     
     # installation options
-    syscall("cp bits_n_pieces/os.json       build/os/OpenPi/os.json"),
-    syscall("cp bits_n_pieces/flavours.json build/os/OpenPi/flavours.json")
+    syscall("cp bits_n_pieces/os.json       build/os/OpenRoverPi/os.json"),
+    syscall("cp bits_n_pieces/flavours.json build/os/OpenRoverPi/flavours.json")
     
     # installation logo
-    syscall("rm build/os/OpenPi/Raspbian.png")
-    syscall("cp bits_n_pieces/OpenPi.png    build/os/OpenPi/OpenPi.png")
+    syscall("rm build/os/OpenRoverPi/Raspbian.png")
+    syscall("cp bits_n_pieces/OpenRoverPi.png    build/os/OpenRoverPi/OpenRoverPi.png")
     
     # installation intro slides (shown during installation)
-    syscall("rm -Rf build/os/OpenPi/slides_vga")
-    syscall("cp -r bits_n_pieces/slides_vga build/os/OpenPi/slides_vga")
+    syscall("rm -Rf build/os/OpenRoverPi/slides_vga")
+    syscall("cp -r bits_n_pieces/slides_vga build/os/OpenRoverPi/slides_vga")
     
-    #===== OpenPi customization
+    #===== OpenRoverPi customization
     
     # extract root
-    syscall("sudo mkdir build/os/OpenPi/root/")
-    syscall("sudo tar -xJf build/os/OpenPi/root.tar.xz -C build/os/OpenPi/root/")
-    syscall("sudo rm -Rf build/os/OpenPi/root.tar.xz")
+    syscall("sudo mkdir build/os/OpenRoverPi/root/")
+    syscall("sudo tar -xJf build/os/OpenRoverPi/root.tar.xz -C build/os/OpenRoverPi/root/")
+    syscall("sudo rm -Rf build/os/OpenRoverPi/root.tar.xz")
     
     # change desktop background image
-    syscall("sudo rm build/os/OpenPi/root/etc/alternatives/desktop-background")
-    syscall("sudo cp bits_n_pieces/desktop-background build/os/OpenPi/root/etc/alternatives/desktop-background")
+    syscall("sudo rm build/os/OpenRoverPi/root/etc/alternatives/desktop-background")
+    syscall("sudo cp bits_n_pieces/desktop-background build/os/OpenRoverPi/root/etc/alternatives/desktop-background")
     
     # install python module dependencies (bottle, PyDispatcher, pyzmq)
     syscall("wget https://pypi.python.org/packages/source/b/bottle/bottle-0.12.7.tar.gz")
     syscall("tar -zxvf bottle-0.12.7.tar.gz")
-    syscall("sudo cp bottle-0.12.7/bottle.py build/os/OpenPi/root/usr/local/lib/python2.7/dist-packages/")
-    syscall("sudo mv bottle-0.12.7/bottle.py build/os/OpenPi/root/usr/local/bin/")
+    syscall("sudo cp bottle-0.12.7/bottle.py build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
+    syscall("sudo mv bottle-0.12.7/bottle.py build/os/OpenRoverPi/root/usr/local/bin/")
     syscall("sudo rm bottle-0.12.7.tar.gz")
     syscall("sudo rm -Rf bottle-0.12.7/")
     syscall("wget https://pypi.python.org/packages/source/P/PyDispatcher/PyDispatcher-2.0.3.tar.gz")
     syscall("tar -zxvf PyDispatcher-2.0.3.tar.gz")
-    syscall("sudo mv PyDispatcher-2.0.3/pydispatch build/os/OpenPi/root/usr/local/lib/python2.7/dist-packages/")
+    syscall("sudo mv PyDispatcher-2.0.3/pydispatch build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
     syscall("sudo rm PyDispatcher-2.0.3.tar.gz")
     syscall("sudo rm -Rf PyDispatcher-2.0.3/")
     syscall("wget https://pypi.python.org/packages/source/p/pyzmq/pyzmq-15.1.0.tar.gz")
     syscall("tar -zxvf pyzmq-15.1.0.tar.gz")
-    syscall("sudo mv pyzmq-15.1.0/zmq build/os/OpenPi/root/usr/local/lib/python2.7/dist-packages/")
+    syscall("sudo mv pyzmq-15.1.0/zmq build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
     syscall("sudo rm pyzmq-15.1.0.tar.gz")
     syscall("sudo rm -Rf pyzmq-15.1.0/")
 
@@ -86,35 +86,35 @@ def ActionBuild(env,target,source):
     syscall("unzip master")
     syscall("sudo rm master")
     syscall("sudo mv openrover-master openrover")
-    syscall("sudo mv openrover build/os/OpenPi/root/home/pi/")
-    syscall("sudo cp bits_n_pieces/openrover build/os/OpenPi/root/etc/init.d")
-    syscall("sudo chmod +x build/os/OpenPi/root/etc/init.d/openrover")
+    syscall("sudo mv openrover build/os/OpenRoverPi/root/home/pi/")
+    syscall("sudo cp bits_n_pieces/openrover build/os/OpenRoverPi/root/etc/init.d")
+    syscall("sudo chmod +x build/os/OpenRoverPi/root/etc/init.d/openrover")
 
     # install OpenWSN-SW
     syscall("wget https://codeload.github.com/openwsn-berkeley/openwsn-sw/zip/develop")
     syscall("unzip develop")
     syscall("sudo rm develop")
     syscall("sudo mv openwsn-sw-develop openwsn-sw")
-    syscall("sudo mv openwsn-sw build/os/OpenPi/root/home/pi/")
+    syscall("sudo mv openwsn-sw build/os/OpenRoverPi/root/home/pi/")
 
     # update modules to run
-    syscall("sudo cp bits_n_pieces/modules build/os/OpenPi/root/etc/")
+    syscall("sudo cp bits_n_pieces/modules build/os/OpenRoverPi/root/etc/")
     
     # customize boot message, start OpenVisualizer on boot
-    # syscall("sudo cp bits_n_pieces/rc.local build/os/OpenPi/root/etc")
+    # syscall("sudo cp bits_n_pieces/rc.local build/os/OpenRoverPi/root/etc")
     
     # compress root
-    syscall("cd build/os/OpenPi/root/ ; sudo tar -cJf ../root.tar.xz ./ ; cd ../../../../")
-    syscall("sudo rm -Rf build/os/OpenPi/root/")
+    syscall("cd build/os/OpenRoverPi/root/ ; sudo tar -cJf ../root.tar.xz ./ ; cd ../../../../")
+    syscall("sudo rm -Rf build/os/OpenRoverPi/root/")
     
-    #===== OpenPi wrap-up and publish
+    #===== OpenRoverPi wrap-up and publish
     
     # create final zip
-    syscall("cd build ; zip -r ../OpenPi.zip * ; cd ..")
+    syscall("cd build ; zip -r ../OpenRoverPi.zip * ; cd ..")
     syscall("rm -Rf build")
     
     # copy to final location
-    syscall("mv OpenPi.zip {0}".format(localEnv['OW_PATH_OPENPI_OUT']))
+    syscall("mv OpenRoverPi.zip {0}".format(localEnv['OW_PATH_OPENROVERPI_OUT']))
 
 #============================ SCons targets ===================================
 

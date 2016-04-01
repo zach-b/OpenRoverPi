@@ -1,9 +1,9 @@
 {
-  "name": "OpenPi",
+  "name": "OpenRoverPi",
   "version": "1.0.0",
   "release_date": "2014-10-12",
   "kernel": "3.12",
-  "description": "OpenWSN-ready Raspberry Pi distribution",
+  "description": "OpenWSN-ready Raspberry Pi Rover distribution",
   "url": "http://www.openwsn.org/",
   "username": "pi",
   "password": "raspberry",

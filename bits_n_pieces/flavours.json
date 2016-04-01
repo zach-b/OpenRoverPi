@@ -1,8 +1,8 @@
 {
   "flavours": [
     {
-      "name": "OpenPi",
-      "description": "OpenWSN-ready Raspberry Pi distribution",
+      "name": "OpenRoverPi",
+      "description": "OpenWSN-ready Raspberry Pi Rover distribution",
       "feature_level": 123900
     }
   ]
