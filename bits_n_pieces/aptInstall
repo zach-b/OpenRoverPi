@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Installing pyzmq"
+dpkg -i /home/pi/pyzmq/*.deb
+rm -r /home/pi/pyzmq
+
+# Delete me so it gets executed only once
+rm $0
+

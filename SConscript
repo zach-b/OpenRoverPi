@@ -63,7 +63,7 @@ def ActionBuild(env,target,source):
     syscall("sudo rm build/os/OpenRoverPi/root/etc/alternatives/desktop-background")
     syscall("sudo cp bits_n_pieces/desktop-background build/os/OpenRoverPi/root/etc/alternatives/desktop-background")
     
-    # install python module dependencies (bottle, PyDispatcher, pyzmq)
+    # install python module dependencies (bottle, PyDispatcher, txThings)
     syscall("wget https://pypi.python.org/packages/source/b/bottle/bottle-0.12.7.tar.gz")
     syscall("tar -zxvf bottle-0.12.7.tar.gz")
     syscall("sudo cp bottle-0.12.7/bottle.py build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
@@ -75,11 +75,19 @@ def ActionBuild(env,target,source):
     syscall("sudo mv PyDispatcher-2.0.3/pydispatch build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
     syscall("sudo rm PyDispatcher-2.0.3.tar.gz")
     syscall("sudo rm -Rf PyDispatcher-2.0.3/")
-    syscall("wget https://pypi.python.org/packages/source/p/pyzmq/pyzmq-15.1.0.tar.gz")
-    syscall("tar -zxvf pyzmq-15.1.0.tar.gz")
-    syscall("sudo mv pyzmq-15.1.0/zmq build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
-    syscall("sudo rm pyzmq-15.1.0.tar.gz")
-    syscall("sudo rm -Rf pyzmq-15.1.0/")
+    syscall("wget https://pypi.python.org/packages/source/t/txThings/txThings-0.1.4.tar.gz")
+    syscall("tar -zxvf txThings-0.1.4.tar.gz")
+    syscall("sudo mv txThings-0.1.4/txthings build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
+    syscall("sudo rm txThings-0.1.4.tar.gz")
+    syscall("sudo rm -Rf  txThings-0.1.4")
+
+    #install pyzmq and twisted
+    syscall("wget -i apturls")
+    syscall("sudo mkdir build/os/OpenRoverPi/root/home/pi/pyzmq")
+    syscall("sudo mv *.deb build/os/OpenRoverPi/root/home/pi/pyzmq/")
+    syscall("sudo cp bits_n_pieces/aptInstall build/os/OpenRoverPi/root/etc/init.d/")
+    syscall("sudo chmod +x build/os/OpenRoverPi/root/etc/init.d/aptInstall")
+    syscall("sudo ln -s ../init.d/aptInstall build/os/OpenRoverPi/root/etc/rc2.d/S05aptInstall")
 
     # install OpenRover
     syscall("wget https://codeload.github.com/zach-b/openrover/zip/master")
@@ -87,8 +95,10 @@ def ActionBuild(env,target,source):
     syscall("sudo rm master")
     syscall("sudo mv openrover-master openrover")
     syscall("sudo mv openrover build/os/OpenRoverPi/root/home/pi/")
-    syscall("sudo cp bits_n_pieces/openrover build/os/OpenRoverPi/root/etc/init.d")
+    syscall("sudo cp bits_n_pieces/openrover build/os/OpenRoverPi/root/etc/init.d/")
     syscall("sudo chmod +x build/os/OpenRoverPi/root/etc/init.d/openrover")
+    syscall("sudo ln -s ../init.d/openrover build/os/OpenRoverPi/root/etc/rc5.d/S05openrover")
+
 
     # install OpenWSN-SW
     syscall("wget https://codeload.github.com/openwsn-berkeley/openwsn-sw/zip/develop")
