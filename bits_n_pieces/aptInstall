@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "Installing pyzmq"
-dpkg -i /home/pi/pyzmq/*.deb
-rm -r /home/pi/pyzmq
+echo "Installing custom apt packets"
+dpkg -i /home/pi/apt/*.deb
+rm -r /home/pi/apt
 
 # Delete me so it gets executed only once
 rm $0

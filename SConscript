@@ -83,8 +83,8 @@ def ActionBuild(env,target,source):
 
     #install pyzmq and twisted
     syscall("wget -i apturls")
-    syscall("sudo mkdir build/os/OpenRoverPi/root/home/pi/pyzmq")
-    syscall("sudo mv *.deb build/os/OpenRoverPi/root/home/pi/pyzmq/")
+    syscall("sudo mkdir build/os/OpenRoverPi/root/home/pi/apt")
+    syscall("sudo mv *.deb build/os/OpenRoverPi/root/home/pi/apt/")
     syscall("sudo cp bits_n_pieces/aptInstall build/os/OpenRoverPi/root/etc/init.d/")
     syscall("sudo chmod +x build/os/OpenRoverPi/root/etc/init.d/aptInstall")
     syscall("sudo ln -s ../init.d/aptInstall build/os/OpenRoverPi/root/etc/rc2.d/S05aptInstall")
