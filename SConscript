@@ -63,7 +63,7 @@ def ActionBuild(env,target,source):
     syscall("sudo rm build/os/OpenRoverPi/root/etc/alternatives/desktop-background")
     syscall("sudo cp bits_n_pieces/desktop-background build/os/OpenRoverPi/root/etc/alternatives/desktop-background")
     
-    # install python module dependencies (bottle, PyDispatcher, txThings)
+    # install python module dependencies (bottle, PyDispatcher, coap)
     syscall("wget https://pypi.python.org/packages/source/b/bottle/bottle-0.12.7.tar.gz")
     syscall("tar -zxvf bottle-0.12.7.tar.gz")
     syscall("sudo cp bottle-0.12.7/bottle.py build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
@@ -75,13 +75,14 @@ def ActionBuild(env,target,source):
     syscall("sudo mv PyDispatcher-2.0.3/pydispatch build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
     syscall("sudo rm PyDispatcher-2.0.3.tar.gz")
     syscall("sudo rm -Rf PyDispatcher-2.0.3/")
-    syscall("wget https://pypi.python.org/packages/source/t/txThings/txThings-0.1.4.tar.gz")
-    syscall("tar -zxvf txThings-0.1.4.tar.gz")
-    syscall("sudo mv txThings-0.1.4/txthings build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
-    syscall("sudo rm txThings-0.1.4.tar.gz")
-    syscall("sudo rm -Rf  txThings-0.1.4")
+    syscall("wget https://codeload.github.com/openwsn-berkeley/coap/zip/develop")
+    syscall("unzip develop")
+    syscall("sudo mv coap-develop/coap/ build/os/OpenRoverPi/root/usr/local/lib/python2.7/dist-packages/")
+    syscall("sudo rm develop")
+    syscall("sudo rm -Rf  coap-develop")
 
-    #install pyzmq and twisted
+
+    #install pyzmq (TODO : install newer version so that ipv6 addresses are supported...)
     syscall("wget -i apturls")
     syscall("sudo mkdir build/os/OpenRoverPi/root/home/pi/apt")
     syscall("sudo mv *.deb build/os/OpenRoverPi/root/home/pi/apt/")
