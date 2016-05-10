@@ -90,12 +90,7 @@ def ActionBuild(env,target,source):
     syscall("sudo chmod +x build/os/OpenRoverPi/root/etc/init.d/aptInstall")
     syscall("sudo ln -s ../init.d/aptInstall build/os/OpenRoverPi/root/etc/rc2.d/S05aptInstall")
 
-    # install OpenRover
-    syscall("wget https://codeload.github.com/zach-b/openrover/zip/master")
-    syscall("unzip master")
-    syscall("sudo rm master")
-    syscall("sudo mv openrover-master openrover")
-    syscall("sudo mv openrover build/os/OpenRoverPi/root/home/pi/")
+    # install OpenRover startup script
     syscall("sudo cp bits_n_pieces/openrover build/os/OpenRoverPi/root/etc/init.d/")
     syscall("sudo chmod +x build/os/OpenRoverPi/root/etc/init.d/openrover")
     syscall("sudo sed -i -e '$i \service openrover start\n' build/os/OpenRoverPi/root/etc/rc.local")
@@ -109,9 +104,6 @@ def ActionBuild(env,target,source):
 
     # update modules to run
     syscall("sudo cp bits_n_pieces/modules build/os/OpenRoverPi/root/etc/")
-    
-    # customize boot message, start OpenVisualizer on boot
-    # syscall("sudo cp bits_n_pieces/rc.local build/os/OpenRoverPi/root/etc")
     
     # compress root
     syscall("cd build/os/OpenRoverPi/root/ ; sudo tar -cJf ../root.tar.xz ./ ; cd ../../../../")

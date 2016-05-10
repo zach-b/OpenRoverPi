@@ -7,7 +7,7 @@
 case "$1" in
   start)
     echo "Starting openrover"
-    start-stop-daemon --start --quiet --oknodo --chdir /home/pi/openrover --background --pidfile /var/run/openrover.pid --make-pidfile --exec /usr/bin/python /home/pi/openrover/main.py
+    start-stop-daemon --start --oknodo --quiet --background --chdir /home/pi/openwsn-sw/software/openvisualizer/bin/openVisualizerApp --pidfile /var/run/openrover.pid --make-pidfile --exec /usr/bin/python openRoverApp.py
     echo "openrover is started"
     ;;
   stop)
@@ -16,12 +16,12 @@ case "$1" in
     echo "openrover is dead"
     ;;
   restart)
-    echo "Starting openrover"
-    start-stop-daemon --start --quiet --oknodo --chdir /home/pi/openrover --background --pidfile /var/run/openrover.pid --make-pidfile --exec /usr/bin/python /home/pi/openrover/main.py
-    echo "openrover is started"
     echo "Stopping openrover"
     start-stop-daemon --stop --pidfile /var/run/openrover.pid
     echo "openrover is dead"
+    echo "Starting openrover"
+    start-stop-daemon --start --oknodo --quiet --background --chdir /home/pi/openwsn-sw/software/openvisualizer/bin/openVisualizerApp --pidfile /var/run/openrover.pid --make-pidfile --exec /usr/bin/python openRoverApp.py
+    echo "openrover is started"
     ;;
   *)
     echo "Usage: /etc/init.d/openrover {start|stop|restart}"
@@ -30,3 +30,5 @@ case "$1" in
 esac
 
 exit 0
+
+
