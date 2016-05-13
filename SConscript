@@ -96,7 +96,7 @@ def ActionBuild(env,target,source):
     syscall("sudo sed -i -e '$i \service openrover start\n' build/os/OpenRoverPi/root/etc/rc.local")
 
     # install OpenWSN-SW
-    syscall("wget https://codeload.github.com/openwsn-berkeley/openwsn-sw/zip/develop")
+    syscall("wget https://codeload.github.com/zach-b/openwsn-sw/zip/develop")
     syscall("unzip develop")
     syscall("sudo rm develop")
     syscall("sudo mv openwsn-sw-develop openwsn-sw")

@@ -7,3 +7,5 @@ rm -r /home/pi/apt
 # Delete me so it gets executed only once
 rm $0
 
+# reboot
+shutdown -r now
